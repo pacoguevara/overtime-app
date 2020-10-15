@@ -5,6 +5,7 @@ describe 'navigate' do
     @user = FactoryGirl.create(:user) 
     login_as(@user, :scope => :user)
   end
+
   describe 'index' do 
    before do
     visit posts_path
@@ -33,6 +34,7 @@ describe 'navigate' do
       expect(page.status_code).to eq 200
     end 
   end
+
   describe "creation" do
     before do
       visit new_post_path
@@ -76,6 +78,16 @@ describe 'navigate' do
       click_on "Save"
 
       expect(page).to have_content "Edited content"
+    end
+  end
+
+  describe "delete" do
+    it "can be deleted" do
+      @post = FactoryGirl.create(:post)
+      visit posts_path
+
+      click_link "delete_post_#{@post.id}"
+      expect(page.status_code).to eq 200
     end
   end
 end
