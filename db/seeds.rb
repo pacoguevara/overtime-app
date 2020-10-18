@@ -1,4 +1,5 @@
 @user = User.create(email: "jon@snow.com", first_name: "Jon", last_name: "Snow", password: "asdfasdf", password_confirmation: "asdfasdf")
+AdminUser.create(email: "admin@user.com", last_name: "Admin", first_name: "User", password: "asdfasdf", password_confirmation: "asdfasdf")
 100.times do |post|
   Post.create!(date: Date.today, rationale: "#{post} rationale content", user_id: @user.id)
 end
